@@ -51,6 +51,7 @@
                                                               npm i --save passport 
                                                               npm i --save passport-google-oauth20 
                                                               npm i --save ejs
+                                                              npm i --save dotenv
   ```
 
   
@@ -59,3 +60,8 @@
   Note : Chances are you will go through an error as "401. That’s an error. Error: invalid_client The OAuth client was not found" 
   solution : Check your dotenv (.env) file and make sure there would be no comma or semicolon there at the end of any line.
 
+ > ## Let's understand how passport Js framework work first .
+  passport js consist of two seprate library.
+  first the "passport Js" and the second is "Stretegy" library .
+
+  Stretagy library : the platform which we want to authenticat by, for example - google, facebook, twitter, local etc.
