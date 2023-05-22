@@ -46,12 +46,12 @@
   install npm packages 
   ```javascript
   
-  PS C:\Users\rs\Desktop\google_oauth_using_passport_node_js> npm i --save express 
-                                                              npm i --save express-session 
-                                                              npm i --save passport 
-                                                              npm i --save passport-google-oauth20 
-                                                              npm i --save ejs
-                                                              npm i --save dotenv
+  PS C:\Users\rs\Desktop\google_oauth_using_passport_node_js>$ npm i --save express 
+                                                             $ npm i --save express-session 
+                                                             $ npm i --save passport 
+                                                             $ npm i --save passport-google-oauth20 
+                                                             $ npm i --save ejs
+                                                             $ npm i --save dotenv
   ```
 
   
@@ -61,7 +61,46 @@
   solution : Check your dotenv (.env) file and make sure there would be no comma or semicolon there at the end of any line.
 
  > ## Let's understand how passport Js framework work first .
-  passport js consist of two seprate library.
-  first the "passport Js" and the second is "Stretegy" library .
+  Passport js consist of two seprate library.
+  First the "Passport Js" and the second is "Stretegy" library .
 
-  Stretagy library : the platform which we want to authenticat by, for example - google, facebook, twitter, local etc.
+  ### Login process with Passport js happens in two parts.
+  - Passport.js library - manage the session.(always required)
+  - Strategy library - authentication or handle login process.(depends which strategy you want to use)  
+
+   Passport.js library : It is always required, you must install this. It connect with "express-session" library to store the user information in req.session object. It works with already logged in users.It doesn't play any role in authentication of user.
+   It maintains the session to store the authenticated information of user to authenticate again and logged in directely if previously they authenticated themself and not logged out yet.  
+
+  Stretagy library : It is like the which plateform authentication you want to authenticate by, for example - google, facebook, twitter,local etc. 
+
+  When you authenticate user via user_name and password which you have saved in your database. this is known as "local strategy"
+  
+  ```javascript
+    
+    //  To use Local strategy authenticate user by user_name and password
+      $ npm install passport-local
+
+    // To use Google strategy install npm package
+      $ npm i --save passport-google-oauth20    // (used in current repo. )
+
+    // Another npm package for Google strategy 
+      $ npm install passport-google-oidc
+
+    // To use Facebook strategy install npm package
+     $ npm install passport-facebook
+
+    // To use Facebook strategy install npm package
+     $ npm install passport-twitter
+
+  ```
+
+  With strategy we authenticate the request whether it is authenticate or not by the method(mechanism) provided by particular strategy.
+  They also provide the necessary data of paricular user to verify them,or store them in our database or use in our application to show their name,email etc. 
+
+  Have you ever noticed when you logged in with your any email using google oauth on any application,How do they welcome you with your name without asking to you and says to complete your profile or do it later on.
+
+  How do they get your email id, photos,name and other general information, they get it from the the strategy you use to login like : login with google or facebook or twitter etc. 
+
+
+
+

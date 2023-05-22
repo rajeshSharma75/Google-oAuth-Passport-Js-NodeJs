@@ -3,9 +3,9 @@
     const session         = require("express-session");
     const passport        = require("passport");  
     const GoogleStrategy  = require('passport-google-oauth20').Strategy  // Requiring GoogleStrategy class  
-     require("ejs"); 
     const path            = require("path");
     require("dotenv").config();
+    require("ejs"); 
     
 
 
@@ -22,14 +22,14 @@
 
     /** session middleware configuration  */
     app.use(session({
-        secret:process.env.SESSION_SECRET,  // this helps express to create an unique session id to store information
-        resave:false,     
-        saveUninitialized:true,
-        cookie:{secure:false,maxAge: 60000},   // in development we use local server as http so if it'll we true now, 
-        }))                     //then session will not create cookies and store in browser coz cookies will only travle on secure connection as https,
-                               // and thus it'll not store cookies on local server as http but it will on secure connection as https,
-                              //however for let's keep it as false for development
-    
+      secret:process.env.SESSION_SECRET,  // this helps express to create an unique session id to store information
+      resave:false,     
+      saveUninitialized:true,
+      cookie:{secure:false,maxAge: 60000},   // in development we use local server as http so if it'll we true now, 
+    }))                     //then session will not create cookies and store in browser coz cookies will only travle on secure connection as https,
+                            // and thus it'll not store cookies on local server as http but it will on secure connection as https,
+                          //however for let's keep it as false for development
+
     
     /** Initialize passport */                      
     app.use(passport.initialize()) ;  // init passport on every route call of our app.  
@@ -46,9 +46,9 @@
     
 
     let oAuthOption = {
-        clientID     : process.env.CLIENT_ID,
-        clientSecret : process.env.CLIENT_SECRET,
-        callbackURL  : process.env.CALLBACK_URL, 
+      clientID     : process.env.CLIENT_ID,
+      clientSecret : process.env.CLIENT_SECRET,
+      callbackURL  : process.env.CALLBACK_URL, 
     } ;
 
     /** connect our app to google oAuth
