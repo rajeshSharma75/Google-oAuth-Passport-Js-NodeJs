@@ -22,14 +22,15 @@
 
     /** session middleware configuration  */
     app.use(session({
-      secret:process.env.SESSION_SECRET,  // this helps express to create an unique session id to store information
-      resave:false,     
-      saveUninitialized:true,
-      cookie:{secure:false,maxAge: 60000},   // in development we use local server as http so if it'll we true now, 
-    }))                     //then session will not create cookies and store in browser coz cookies will only travle on secure connection as https,
-                            // and thus it'll not store cookies on local server as http but it will on secure connection as https,
-                          //however for let's keep it as false for development
-
+        secret:process.env.SESSION_SECRET,  // this helps express to create an unique session id while encrypting cookies to store information.
+        resave:false, // don't save session if unmodified    
+        saveUninitialized:true,
+        cookie:{               // in development we use local server as http so if it'll we true now,
+          secure:false,       // then session will not create cookies and store in browser coz cookies will only travle on secure connection as https,
+          maxAge: 60000      // and thus it'll not store cookies on local server as http but it will on secure connection as https,
+        },                  // The default value is { path: '/', httpOnly: true, secure: false, maxAge: null }. we do not need to proactively write.but in              
+    }))                    // production we need configure accordingly .  
+       
     
     /** Initialize passport */                      
     app.use(passport.initialize()) ;  // init passport on every route call of our app.  
@@ -42,6 +43,8 @@
      app.use(passport.session())  ;   // allow passport to use "express-session . Note : before this statement 
                                      //you must configure the session middleware and order of these 
                                     //should be same first,passport.initialize() then passport.session()
+                                   // when app.use(session({..})) invoked it creates an "req.session" object.
+                                  // and when passport.session() invoked it add an additional object as "req.session.passport".
 
     
 
@@ -55,27 +58,26 @@
      * GoogleStrategy(option,callback_func)  
      */ 
     passport.use(new GoogleStrategy(oAuthOption,function(accessToken,refreshToken,profile,callback){
-        // Use the profile information to authenticate the user
-       // console.log(profile);
+        // Use the profile information to authenticate the user    
         callback(null,profile) ;  // we can save the profile data in our data base using a insertion query here if we want.
     }))
     
     /** after user successfully logged in passport will call to serializeUser to read and store the profile information to the user browser and create a session id  */
-       passport.serializeUser(function(user,callback){    // it store all the user information in (req.user) which we can access to show data on rendering any page.         
+       passport.serializeUser(function(user,callback){    // it store all the user information in "req.session.passport.user.{..}"        
         callback(null,user) ;
        });
 
-       passport.deserializeUser(function(obj,callback){
-        callback(null,obj) ;
-       });
+       passport.deserializeUser(function(obj,callback){  // after serialization it calls the deserialize user to attach user information in "req.user",
+        callback(null,obj) ;                            //  it takes the last object of "req.session.passport.user.{...}" and attach to "req.user",
+       });                                             //   which can be accesible anywhere in app in "req.user".
     
 
 
        /** requset handler for Home (login page) */
        app.get("/login",(req,res)=>{
-        if(req.isAuthenticated()){
-            res.redirect("/dashboard");
-        }else{
+        if(req.isAuthenticated()){           // Note : passport js provides an function "req.isAutenticated()" to check on every route whether 
+            res.redirect("/dashboard");     //         the req is authenticated or not to access our pages, we can use it to our any req handler 
+        }else{                             //  it returns true if the user is authentic else return false .
         res.render("login.ejs") ;
         }
        })
@@ -108,8 +110,8 @@
 
     /** req handler for logout  */
       app.get("/logout", (req, res) => {
-        req.logout(function (err) {
-          if (err) {
+        req.logout(function (err) {          //  req.logout() provided by passport js to clear the both sessions object of "req.session.passport"
+          if (err) {                        //  and the “req.user" object
             console.log(err);
           } else {
             res.redirect("/login");
@@ -124,7 +126,7 @@
        
       })
       
-      
+      /** Listening our server at port 3000 */
        app.listen(3000 || process.env.PORT,()=>{
         console.log("Server is listening on port 3000");
        })
