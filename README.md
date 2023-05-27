@@ -80,7 +80,7 @@
  ### To register our application's client ID & secret on google cloud console follow this .
  - Go to this url : https://console.cloud.google.com/ 
   - Sign in with your gmail id .
-  </br>
+
  ![sign_in_image](./public/images/1sign_in_page.png)
 
  <!-- ![2after_sign_in_page](./public/images/2after_sign_in_page.png) -->
