@@ -134,19 +134,20 @@
   ```
 
  then create a `.env` file and add the  following envorinment variables.
- ```javascript
+
+ ```dosini
       
-    // our registered application's client_id and client_secret from google cloud console to use in google oAuth. 
+    # our registered application's client_id and client_secret from google cloud console to use in google oAuth. 
     CLIENT_ID      = 'replace_your_client_id_here'
     CLIENT_SECRET  = "replace_your_client_secret_here"
 
-    // callback url to redirect user after successfully authenticated
+    # callback url to redirect user after successfully authenticated
     CALLBACK_URL   = 'http://localhost:3000/auth/google/callback'
 
-    // port initialization to run our server at.
+    # port initialization to run our server at.
     PORT           =  3000
 
-    // A session secret is a key used for encrypting cookies.
+    # A session secret is a key used for encrypting cookies.
     SESSION_SECRET =  "your_secret_key"
 ```  
  > Note : Mistake we can make as a begginer.
