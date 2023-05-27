@@ -78,32 +78,45 @@
  - Once registered, your app will be issued a client ID and secret which we will be using in the strategy configuration.
 
  ### To register our application's client ID & secret on google cloud console follow this .
- - Go to this url : https://console.cloud.google.com/ </br>
+ - Go to this url : https://console.cloud.google.com/ 
+  - Sign in with your gmail id .
+  </br>
  ![sign_in_image](./public/images/1sign_in_page.png)
- - Sign in with your gmail id .
- ![2after_sign_in_page](./public/images/2after_sign_in_page.png)
+
+ <!-- ![2after_sign_in_page](./public/images/2after_sign_in_page.png) -->
+ - after login click on select a project and then create a new project.
  ![3creating_new_project](./public/images/3creating_new_project.png)
+ - give your project name click create.
  ![4giving_project_name](./public/images/4giving_project_name.png)
- ![5select_project](./public/images/5select_project.png)
+ <!-- ![5select_project](./public/images/5select_project.png) -->
+ - then select your recent created project and go to explore and enable APIs section.
  ![6explore_and_enable_api](./public/images/6explore_and_enable_api.png)
- ![7choose_credentials](./public/images/7choose_credentials.png)
- ![8create_credentials](./public/images/8create_credentials.png)
- ![9select_oauth_client_id](./public/images/9select_oauth_client_id.png)
- ![10configure_consent_screen](./public/images/10configure_consent_screen.png)
+ <!-- ![7choose_credentials](./public/images/7choose_credentials.png) -->
+ <!-- ![8create_credentials](./public/images/8create_credentials.png) -->
+ <!-- ![9select_oauth_client_id](./public/images/9select_oauth_client_id.png) -->
+ <!-- ![10configure_consent_screen](./public/images/10configure_consent_screen.png) -->
+ - select oAuth consent screen, for development purpose we choose external then it start in testing mode otherwise for production we need to verify our app.
  ![11choosing_external](./public/images/11choosing_external.png)
+ - enter your app information such as app name user support email
  ![12app_name_support_email](./public/images/12app_name_support_email.png)
+ - then providing app domain for local server on testing purpose we'have used https://localhost:3000 and developer contact information after giving it click on save and continue.
  ![13app_domain](./public/images/13app_domain.png)
- ![14developer_contact_information](./public/images/14developer_contact_information.png1)
- ![15add_scopes](./public/images/15add_scopes.png)
+ ![14developer_contact_information](./public/images/14developer_contact_information.png)
+
+ <!-- ![15add_scopes](./public/images/15add_scopes.png) -->
+ - then select add scope, scope means what information you want once your gets logged in successfully.
  ![16selected_scope](./public/images/16selected_scope.png)
- ![17update](./public/images/17update.png)
+ <!-- ![17update](./public/images/17update.png) -->
  ![18save_and_continue](./public/images/18save_and_continue.png)
+ - then add user for testing who can login in testing mode.
  ![19add_test_users](./public/images/19add_test_users.png)
- ![20save_and_continue](./public/images/20save_and_continue.png)
- ![21back_to_dashboard](./public/images/21back_to_dashboard.png)
+ <!-- ![20save_and_continue](./public/images/20save_and_continue.png) -->
+ <!-- ![21back_to_dashboard](./public/images/21back_to_dashboard.png) -->
+ - then going on credential section and selecting web application type filling following details.
  ![22oauth_client_id_application_type](./public/images/22oauth_client_id_application_type.png)
  ![23authorised_javascript_origins](./public/images/23authorised_javascript_origins.png)
  ![24redirect_url](./public/images/24redirect_url.png)
+ - now copy the created client ID & secret of your project or download as json which we'll be using in strategy configuration.
  ![25oauth_client_credentials_download](./public/images/25oauth_client_credentials_download.png)
 
 
