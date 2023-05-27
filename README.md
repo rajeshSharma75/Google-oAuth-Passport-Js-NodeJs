@@ -3,7 +3,7 @@
 
  </br>
 
- > ## First things first,Let's understand how passport Js framework work.
+ > ## First things first,Let's understand how passport Js library work.
   Passport js consist of two seprate library.
   First the "Passport Js" and the second is "Stretegy" library .
 
